@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TestCase Genie – Ubah cerita pengguna menjadi test case terstruktur secara otomatis." />
+  <title>TestCase Genie</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true">🧞</span>
+        <span class="brand-name">TestCase <strong>Genie</strong></span>
+      </div>
+      <p class="brand-tagline">Ubah cerita pengguna menjadi test case terstruktur secara instan</p>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="app-main">
+
+    <!-- INPUT CARD -->
+    <section class="card input-card" aria-label="Input Cerita Pengguna">
+      <h2 class="card-title">
+        <span class="step-badge">1</span> Masukkan Cerita Pengguna / Persyaratan
+      </h2>
+
+      <div class="form-group">
+        <label for="userStory" class="form-label">Cerita Pengguna / Deskripsi Fitur</label>
+        <textarea
+          id="userStory"
+          class="form-textarea"
+          rows="7"
+          placeholder="Contoh: Sebagai pengguna, saya ingin dapat login menggunakan email dan kata sandi agar dapat mengakses dashboard. Email harus valid, kata sandi minimal 8 karakter, dan harus ada validasi formulir."
+          aria-describedby="storyHint"
+        ></textarea>
+        <span id="storyHint" class="form-hint">Sertakan detail seperti validasi, batasan, atau alur pengguna untuk hasil terbaik.</span>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group form-group--half">
+          <label for="featureType" class="form-label">Tipe Fitur</label>
+          <select id="featureType" class="form-select" aria-label="Pilih tipe fitur">
+            <option value="login">Masuk (Login)</option>
+            <option value="form">Formulir</option>
+            <option value="search">Pencarian</option>
+            <option value="payment">Pembayaran</option>
+            <option value="other">Lain-lain</option>
+          </select>
+        </div>
+
+        <div class="form-group form-group--half form-group--actions">
+          <button id="btnGenerate" class="btn btn--primary btn--lg" type="button">
+            <span class="btn-icon" aria-hidden="true">⚡</span> Buat Kasus Uji
+          </button>
+          <button id="btnReset" class="btn btn--ghost" type="button" title="Reset semua">
+            <span class="btn-icon" aria-hidden="true">↺</span> Reset
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULT SECTION -->
+    <section id="resultSection" class="result-section" aria-label="Hasil Kasus Uji" aria-live="polite">
+
+      <!-- Empty state (shown initially) -->
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon" aria-hidden="true">📋</div>
+        <h3 class="empty-title">Belum ada kasus uji</h3>
+        <p class="empty-desc">Masukkan cerita pengguna di atas lalu klik <strong>Buat Kasus Uji</strong> untuk memulai.</p>
+      </div>
+
+      <!-- Result card (hidden initially) -->
+      <div id="resultCard" class="card result-card hidden">
+
+        <!-- Result header & toolbar -->
+        <div class="result-header">
+          <div class="result-meta">
+            <h2 class="card-title">Hasil Kasus Uji</h2>
+            <span id="totalBadge" class="total-badge"></span>
+          </div>
+          <div class="result-actions">
+            <button id="btnCopyMd" class="btn btn--secondary" type="button">
+              <span class="btn-icon" aria-hidden="true">📄</span> Salin sebagai Markdown
+            </button>
+            <button id="btnExportCsv" class="btn btn--accent" type="button">
+              <span class="btn-icon" aria-hidden="true">⬇</span> Ekspor CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter tabs -->
+        <div class="tab-bar" role="tablist" aria-label="Filter tipe kasus uji">
+          <button class="tab-btn tab-btn--active" role="tab" aria-selected="true"  data-filter="all"      id="tab-all">Seluruh <span class="tab-count" id="cnt-all"></span></button>
+          <button class="tab-btn"               role="tab" aria-selected="false" data-filter="Positif"   id="tab-pos">Positif <span class="tab-count" id="cnt-pos"></span></button>
+          <button class="tab-btn"               role="tab" aria-selected="false" data-filter="Negatif"   id="tab-neg">Negatif <span class="tab-count" id="cnt-neg"></span></button>
+          <button class="tab-btn"               role="tab" aria-selected="false" data-filter="Edge"      id="tab-edge">Tepi    <span class="tab-count" id="cnt-edge"></span></button>
+        </div>
+
+        <!-- Table wrapper -->
+        <div class="table-wrapper" role="region" aria-label="Tabel kasus uji" tabindex="0">
+          <table class="test-table" id="testTable">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Skenario</th>
+                <th scope="col">Prasyarat</th>
+                <th scope="col">Langkah</th>
+                <th scope="col">Hasil yang Diharapkan</th>
+                <th scope="col">Jenis</th>
+                <th scope="col">Tingkat Kepentingan</th>
+              </tr>
+            </thead>
+            <tbody id="testTableBody"></tbody>
+          </table>
+        </div>
+
+      </div><!-- /result-card -->
+    </section><!-- /resultSection -->
+
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="app-footer">
+    <p>TestCase Genie &copy; 2025 — Ditenagai oleh AI Berbasis Kata Kunci</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

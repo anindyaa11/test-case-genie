@@ -1,0 +1,528 @@
+/* =====================================================
+   TestCase Genie — style.css
+   Palet: #2563EB (biru utama), #F59E0B (aksen kuning)
+   Desain: kartu sudut 12px, responsif, WCAG AA
+   ===================================================== */
+
+/* ── 1. RESET & VARIABEL ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-primary:       #2563EB;
+  --color-primary-dark:  #1D4ED8;
+  --color-primary-light: #EFF6FF;
+  --color-accent:        #F59E0B;
+  --color-accent-dark:   #D97706;
+  --color-accent-light:  #FFFBEB;
+
+  --color-positive:      #059669;
+  --color-positive-bg:   #ECFDF5;
+  --color-negative:      #DC2626;
+  --color-negative-bg:   #FEF2F2;
+  --color-edge:          #7C3AED;
+  --color-edge-bg:       #F5F3FF;
+
+  --color-text:          #111827;
+  --color-text-muted:    #6B7280;
+  --color-surface:       #FFFFFF;
+  --color-bg:            #F3F4F6;
+  --color-border:        #E5E7EB;
+  --color-border-focus:  #2563EB;
+
+  --priority-high:       #DC2626;
+  --priority-medium:     #D97706;
+  --priority-low:        #059669;
+
+  --radius-card:    12px;
+  --radius-btn:     8px;
+  --radius-badge:   999px;
+  --radius-input:   8px;
+
+  --shadow-card:    0 1px 3px rgba(0,0,0,.08), 0 4px 16px rgba(0,0,0,.06);
+  --shadow-btn:     0 1px 2px rgba(0,0,0,.10);
+
+  --transition:     .18s ease;
+
+  --font-base:      'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+/* ── 2. BASE ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-base);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── 3. HEADER ── */
+.app-header {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 20px 0 22px;
+  box-shadow: 0 2px 8px rgba(37,99,235,.35);
+}
+
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -.3px;
+}
+
+.brand-icon { font-size: 1.8rem; }
+
+.brand-name strong { color: var(--color-accent); }
+
+.brand-tagline {
+  margin-top: 4px;
+  font-size: .88rem;
+  color: rgba(255,255,255,.80);
+}
+
+/* ── 4. MAIN LAYOUT ── */
+.app-main {
+  flex: 1;
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── 5. CARD ── */
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 28px 28px 24px;
+  border: 1px solid var(--color-border);
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* Step badge */
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  background: var(--color-primary);
+  color: #fff;
+  border-radius: 50%;
+  font-size: .8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ── 6. FORM ELEMENTS ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.form-group:last-child { margin-bottom: 0; }
+
+.form-row {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.form-group--half { flex: 1 1 220px; }
+
+.form-group--actions {
+  display: flex;
+  flex-direction: row !important;
+  gap: 10px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.form-label {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.form-hint {
+  font-size: .78rem;
+  color: var(--color-text-muted);
+}
+
+.form-textarea,
+.form-select {
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-input);
+  padding: 10px 14px;
+  font-family: var(--font-base);
+  font-size: .93rem;
+  color: var(--color-text);
+  background: var(--color-surface);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.form-textarea:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+  box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+/* ── 7. BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 20px;
+  border-radius: var(--radius-btn);
+  font-family: var(--font-base);
+  font-size: .9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: background var(--transition), border-color var(--transition),
+              box-shadow var(--transition), opacity var(--transition);
+  white-space: nowrap;
+  box-shadow: var(--shadow-btn);
+  text-decoration: none;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.btn--primary:hover  { background: var(--color-primary-dark); border-color: var(--color-primary-dark); }
+.btn--primary:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+.btn--secondary {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border-color: #BFDBFE;
+}
+.btn--secondary:hover { background: #DBEAFE; }
+
+.btn--accent {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+.btn--accent:hover { background: var(--color-accent-dark); border-color: var(--color-accent-dark); }
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+.btn--ghost:hover { background: var(--color-bg); color: var(--color-text); }
+
+.btn--lg { padding: 12px 26px; font-size: .97rem; }
+
+.btn-icon { font-size: 1rem; }
+
+/* ── 8. EMPTY STATE ── */
+.empty-state {
+  text-align: center;
+  padding: 56px 20px;
+  color: var(--color-text-muted);
+}
+
+.empty-icon { font-size: 3.5rem; margin-bottom: 14px; }
+
+.empty-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.empty-desc { font-size: .92rem; max-width: 380px; margin: 0 auto; }
+
+/* ── 9. RESULT CARD ── */
+.result-card { padding: 0; overflow: hidden; }
+
+.result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 22px 28px 18px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.result-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.result-meta .card-title { margin-bottom: 0; }
+
+.total-badge {
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  border: 1px solid #BFDBFE;
+  border-radius: var(--radius-badge);
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 2px 12px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* ── 10. TAB BAR ── */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  padding: 0 28px;
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tab-bar::-webkit-scrollbar { display: none; }
+
+.tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 18px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: var(--font-base);
+  font-size: .87rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.tab-btn:hover { color: var(--color-primary); }
+
+.tab-btn--active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.tab-btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: -2px; }
+
+.tab-count {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-badge);
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 1px 8px;
+  min-width: 22px;
+  text-align: center;
+}
+
+.tab-btn--active .tab-count {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+
+/* ── 11. TABLE ── */
+.table-wrapper {
+  overflow-x: auto;
+  padding: 0;
+}
+
+.test-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .875rem;
+}
+
+.test-table thead {
+  background: var(--color-bg);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.test-table th {
+  padding: 12px 14px;
+  text-align: left;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  border-bottom: 2px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.test-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+  color: var(--color-text);
+  line-height: 1.55;
+}
+
+.test-table tbody tr:last-child td { border-bottom: none; }
+
+.test-table tbody tr:hover td { background: #F8FAFF; }
+
+/* ID cell */
+.test-table .col-id {
+  font-weight: 700;
+  font-size: .78rem;
+  color: var(--color-primary);
+  white-space: nowrap;
+  min-width: 60px;
+}
+
+/* Steps list inside cell */
+.steps-list {
+  padding-left: 18px;
+  margin: 0;
+}
+.steps-list li { margin-bottom: 3px; }
+
+/* ── 12. TYPE BADGES ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-badge);
+  font-size: .74rem;
+  font-weight: 700;
+  padding: 3px 11px;
+  white-space: nowrap;
+}
+
+.badge--positif  { background: var(--color-positive-bg); color: var(--color-positive); }
+.badge--negatif  { background: var(--color-negative-bg); color: var(--color-negative); }
+.badge--edge     { background: var(--color-edge-bg);     color: var(--color-edge);     }
+
+/* ── 13. PRIORITY BADGES ── */
+.priority {
+  font-size: .74rem;
+  font-weight: 700;
+  padding: 3px 11px;
+  border-radius: var(--radius-badge);
+  white-space: nowrap;
+}
+.priority--tinggi  { background: #FEF2F2; color: var(--priority-high); }
+.priority--sedang  { background: #FFFBEB; color: var(--priority-medium); }
+.priority--rendah  { background: #ECFDF5; color: var(--priority-low); }
+
+/* ── 14. HIDDEN UTILITY ── */
+.hidden { display: none !important; }
+
+/* ── 15. TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: #1F2937;
+  color: #F9FAFB;
+  border-radius: var(--radius-btn);
+  padding: 12px 22px;
+  font-size: .88rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 9999;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── 16. FOOTER ── */
+.app-footer {
+  text-align: center;
+  padding: 18px 20px;
+  font-size: .8rem;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+  margin-top: auto;
+}
+
+/* ── 17. RESPONSIVE (MOBILE ≤ 640px) ── */
+@media (max-width: 640px) {
+  .app-header { padding: 16px 0 18px; }
+  .brand { font-size: 1.3rem; }
+  .brand-icon { font-size: 1.5rem; }
+
+  .card { padding: 20px 16px 18px; }
+
+  .form-row { flex-direction: column; }
+  .form-group--half { flex: 1 1 100%; }
+
+  .form-group--actions {
+    flex-direction: row;
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .btn--lg { width: 100%; justify-content: center; }
+
+  .result-header { flex-direction: column; align-items: flex-start; }
+  .result-actions { width: 100%; }
+  .result-actions .btn { flex: 1; justify-content: center; }
+
+  .tab-btn { padding: 10px 12px; font-size: .82rem; }
+
+  .test-table th,
+  .test-table td { padding: 10px 10px; }
+}
+
+/* ── 18. REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
